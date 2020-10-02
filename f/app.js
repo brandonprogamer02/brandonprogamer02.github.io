@@ -2,6 +2,7 @@
 //---EVENTOS LISTENERS-------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
     loadIndexedBD();
+    // esta es la real
     readData((arrayData)=>
     {
         console.log(arrayData);
