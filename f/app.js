@@ -2,9 +2,9 @@
 //---EVENTOS LISTENERS-------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
     loadIndexedBD();
-    let f = readData();
+    readData();
     //console.log(f);
-    addData();
+    //addData();
 });
 
 // --REAL FUNCTIONS-----------------------------------------------------------------------
@@ -38,13 +38,15 @@ const readData = () => {
     implementarCodigoIndexedDB('db', 'readonly', (transaccion) => {
         const objectStorage = transaccion.objectStore('db');
         const requestCursor = objectStorage.openCursor();
-        requestCursor.onsuccess = () => {
+        requestCursor.onsuccess = async () => {
             const cursor = requestCursor.result;
             console.log('lectura de la database:');
-            if (cursor)  // real sintaxis js
+            if(cursor)
             {
-                console.log(cursor.continue());
-            } else { console.log('no hay mas registros') }
+                console.log( cursor);
+                console.log( cursor.continue());
+            }else console.log('no hay mas registros');
+            
             
         }
     });

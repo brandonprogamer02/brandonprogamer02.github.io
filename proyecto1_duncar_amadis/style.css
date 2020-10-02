@@ -12,3 +12,22 @@
     background-color: #252C8F;
     cursor: pointer;
 }
+
+#boton-imprimir-info{
+    width: 100%;
+    padding: 10px;
+    background-color: #FA8072;
+    color: white;
+    border: 1px solid #FA8072;
+    outline: none;
+    margin-bottom: 10px;
+    margin: auto;
+}
+#boton-imprimir-info:hover{
+    background-color: crimson;
+}
+table td:hover{
+
+    cursor: pointer;
+
+}
