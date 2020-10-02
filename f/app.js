@@ -2,9 +2,12 @@
 //---EVENTOS LISTENERS-------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
     loadIndexedBD();
-    readData();
-    //console.log(f);
-    //addData();
+    readData((arrayData)=>
+    {
+        console.log(arrayData);
+    });
+    addData( {nombre:'jose',apellido:"Urbaez Sanchez"} );
+    
 });
 
 // --REAL FUNCTIONS-----------------------------------------------------------------------
@@ -20,42 +23,41 @@ const loadIndexedBD = () => {
     request.onerror = (error) => console.log('hubo un error', error);
 
 }
+const updateData = () => {
 
-const addData = async () => {
-    implementarCodigoIndexedDB('db', 'readwrite', (transaccion) => {
-        const objectStorage = transaccion.objectStore('db');
-        const newClient = {
-            nombre: 'San Juan',
-            email: 'sanjuan0100@gmail.com'
-        }
-        let array = new Array();
-        array.push(newClient);
-        objectStorage.add(array);
+}
+
+const addData = (objeto) => {
+    implementarCodigoIndexedDB('db', 'readwrite', (objectStorage) => {
+        objectStorage.add(objeto);
     });
 }
 
-const readData = () => {
-    implementarCodigoIndexedDB('db', 'readonly', (transaccion) => {
-        const objectStorage = transaccion.objectStore('db');
+const readData = (callback) => {
+    implementarCodigoIndexedDB('db', 'readonly', (objectStorage) => {
         const requestCursor = objectStorage.openCursor();
-        requestCursor.onsuccess = async () => {
+        const arrayData = new Array();
+        requestCursor.onsuccess = (e) => {
             const cursor = requestCursor.result;
-            console.log('lectura de la database:');
-            if(cursor)
-            {
-                console.log( cursor);
-                console.log( cursor.continue());
-            }else console.log('no hay mas registros');
-            
-            
+            if (cursor) {
+                arrayData.push(cursor.value);
+                cursor.continue();
+            } 
         }
+        callback(arrayData);
     });
+
 }
 const implementarCodigoIndexedDB = (db, tipoTransaccion, callback) => {
     let request = indexedDB.open(db, 1);
+
     request.onsuccess = () => {
         let DB = request.result;
         const transaccion = DB.transaction([db], tipoTransaccion);
-        callback(transaccion);
+        const objectStorage = transaccion.objectStore('db');
+        callback(objectStorage);
     }
 }
+
+
+
