@@ -1,0 +1,82 @@
+#enviar[data-received-action="hover"]{
+    cursor: pointer;
+    background-color:#38B139;;
+}
+
+body{
+    background: whitesmoke
+}
+.contenedor-padre{
+    margin: auto;
+    background:white;
+    width: 50%;
+    
+    border: 5px solid whitesmoke;
+    border-radius: 20px;
+    padding-bottom:10px;
+    
+}
+.contenedor-padre textarea{
+    text-align: left; 
+    
+}
+.contenedor-padre * {
+    text-align: center;
+    outline: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#mensaje-error{
+    display: inline-block;
+    font-weight: bold;
+    
+    background:red;
+    color: white;
+    padding:8px;
+    border-radius: 10px;
+}
+main h3{
+    
+    margin-bottom: -0.01px;
+}
+
+header{
+    background:purple;
+    margin-top:-10px;
+    
+    border-radius: 10px;
+}
+header h1{
+    padding:10px;
+    color: white;
+    
+    font-weight: bold;
+}
+#botonera{
+    margin-top: 10px;
+    
+    
+}
+#botonera #enviar{
+    /*background-color: #BDFBC4; */
+    /*color: #8A8888;*/
+    border: 2px solid #BDFBC4;
+    padding:5px 15px;
+    border-radius: 5px;
+    cursor: not-allowed;
+    font-weight: bold;
+    
+}
+
+#botonera #limpiar{
+    background-color: #3548EF;
+    border: 2px solid #3548EF;
+    padding:5px 15px;
+    margin-left:10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+#botonera #limpiar:hover{
+    background-color: #465493;
+    cursor: pointer;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<!-- Esta es una pequeña modificacion que le hice a un ejercicio que fue propuesto en
+el curso de platzi para ir practicado las cosas que he aprendido en el curso y algunas
+que he visto en el camino-->
+<!-- Made by Lam09 -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujando con flechas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/dibujoEstilos.css">
+</head>
+
+<body>
+    <div class="container sidebar col-xs-4 col-md-3">
+        <aside>
+            <!-- <p>"El color blanco representa<br> el limite de donde no<br> puede pasa con tu
+                dibujo<br>
+                luego de ese cuadrado no<br> se veran las lineas trazadas."</p> -->
+            <p>"Mueve las flechas(⬆️⬇️⬅️➡️) del teclado para dibujar"</p><br>
+            <p><img src="http://www.alegsa.com.ar/Imagen/clic_izquierdo.png" alt="img de mouse" width="10%">Deja el
+                click izquierdo pulsado para dibujar. </p>
+            <fieldset>
+                <legend>Pulsa sobre el tipo de imagen y el resultado se generará abajo</legend><button id="png">Generar
+                    PNG</button> | <button id="jpeg">Generar JPEG</button>|<br><br> <button class="btn-download"
+                    id="descargar"></button><br />
+            </fieldset>
+
+
+    </div>
+    </aside>
+    </div>
+    <!-- etiqueta div que abarca todo los botones para hacer mas facil aplicar css -->
+    <div class="container-fluid col-xs-8 col-md-9">
+        <div class="botones">
+            <button type="button" class="boton-rojo" id="cambiarColor1">Rojo</button>
+            <button type="button" class="boton-blanco" id="cambiarColor2">Blanco</button>
+            <button type="button" class="boton-azul" id="cambiarColor3">Azul</button>
+
+
+            <button type="button" class="boton-borrar" onclick="window.location.reload()">Borrar</button>
+        </div>
+        <br>
+        <!-- Canvas donde se realiza el dibujo(lienzo) -->
+        <canvas width="700" height="500" id="area_de_dibujo"></canvas><br>
+        <h3>IMAGEN GENERADA DEL CANVAS</h3>
+        <img src="" id="laimagen" style="border:solid white" />
+        <!-- ** Botones para descargar el canvas -->
+
+        <!-- ** script enlazado -->
+        <script src="eventos.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>

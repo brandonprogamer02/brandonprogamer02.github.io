@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+};
+
+html,body{
+    height: 100%;
+}
+
+body{
+    background: black;
+    background-attachment: fixed;
+}
+:root{
+    --ancho: 400px;
+    --altura: 400px;
+}
+
+.container{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border: 2px solid red;
+    width: var(--ancho);
+    height: var(--altura);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square{
+    border: 1px solid white;
+    width: calc(var(--ancho) / 3);
+    height: calc(var(--altura) / 3);
+}

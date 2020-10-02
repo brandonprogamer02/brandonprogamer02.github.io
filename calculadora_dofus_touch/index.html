@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Danos Dofus Touch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main>
+        <h1>Calculadora de Danos Dofus Touch</h1>
+        <form action="">
+            <table>
+                <tr>
+                    <td>Daño del hechizo</td>
+                    <td><input type="number" id="dano_hechizo" autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td>Puntos de Stats</td>
+                    <td><input type="number" id="stats" autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td>Potencia</td>
+                    <td><input type="number" id="potencia" autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td>Daños</td>
+                    <td> <input type="number" id="danos_fijos" autocomplete="off"> </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" id="boton" value="Calcular Daño" style="height: auto;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="resultadoTexto">Resultado</p>
+                    </td>
+                    <td>
+                        <input type="text" id="resultado" readonly>
+                    </td>
+
+                </tr>
+            </table>
+        </form>
+
+        <script src="app.js"></script>
+
+    </main>
+
+</body>
+
+</html>

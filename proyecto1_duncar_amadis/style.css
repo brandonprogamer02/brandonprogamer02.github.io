@@ -1,0 +1,14 @@
+#guardar{
+    width: 100%;
+    padding: 10px;
+    background-color: cornflowerblue;
+    color: white;
+    border: 1px solid cornflowerblue;
+    outline: none;
+    
+    margin-bottom: 10px;
+}
+#guardar:hover{
+    background-color: #252C8F;
+    cursor: pointer;
+}

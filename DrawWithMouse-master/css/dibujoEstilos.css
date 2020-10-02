@@ -1,0 +1,92 @@
+body {
+	text-align: center;
+	background-color: black;
+	zoom: 90%;
+	/* background-image: URL(caballete.jpg); */
+}
+
+div.container.sidebar.col-md-3 {
+	position: absolute;
+	top: 25%;
+	left: 3%;
+	font-size: small;
+}
+div.container-fluid.col-md-9 {
+	position: absolute;
+	top: 8%;
+	left: 20%;
+}
+
+#area_de_dibujo {
+	border: 5px solid lightseagreen;
+	background-color: white;
+}
+.btn-download {
+	background-image: url('data:image/png;base64,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');
+	background-repeat: no-repeat;
+	height: 100px;
+	width: 100px;
+	background-position: center;
+}
+
+p {
+	color: white;
+	font-family: monospace;
+	font-size: 2em;
+	border: 1px solid white;
+}
+
+.botones {
+	font-family: monospace;
+	font-size: 125%;
+}
+
+.boton-rojo {
+	border-radius: 5px;
+	border-color: red;
+	background-color: red;
+	color: white;
+	font: x-large monospace;
+	cursor: pointer;
+	margin: 6px;
+	margin-bottom: auto;
+}
+
+.boton-blanco {
+	border-radius: 5px;
+	border-color: darkblue;
+	background-color: white;
+	color: black;
+	font: x-large monospace;
+	cursor: pointer;
+	margin: 6px;
+	margin-bottom: auto;
+}
+
+.boton-azul {
+	border-radius: 5px;
+	border-color: skyblue;
+	background-color: blue;
+	color: white;
+	font: x-large monospace;
+	cursor: pointer;
+	margin: 6px;
+	margin-bottom: auto;
+}
+
+.boton-borrar {
+	border-radius: 5px;
+	margin: 6px;
+	margin-bottom: auto;
+	font: x-large monospace;
+	cursor: pointer;
+	background-color: rgb(172, 172, 182);
+}
+
+/* Esto es lo que hace que cambien de color cuando pones el cursor encima de un boton */
+#cambiarColor1:hover,
+#cambiarColor2:hover,
+#cambiarColor3:hover,
+.boton-borrar:hover {
+	background-color: rgba(245, 245, 245, 0.842);
+}

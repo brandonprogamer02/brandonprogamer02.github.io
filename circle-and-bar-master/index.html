@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="juego.css">
+    <title>Juego xD</title>
+</head>
+
+<body style="background-color:lightblue">
+
+
+    <section id="instructionMenu">
+        <h1 class="title">INSTRUCTIONS!</h1>
+        <h2 id="instruction">USE LAS TECLAS(<span>flecha izq: </span> ⬅️para mover la barra <br>
+            <span>flecha derecha:</span> ➡️para
+            mover
+            la barra) <br> o LAS LETRAS(<span>A: </span> ⬅️ || <span>D:</span>➡️) PARA MOVER LA
+            BARRA.</h2>
+        <br> <br>
+        <h2 id="backButton">⬅️BACK️️️⬅️</h2>
+
+    </section>
+
+    <section id="homeMenu">
+        <h1 class="title">Circle and Bar!</h1>
+        <h2 id="startButton">START</h2>
+        <h2 id="introButton">INSTRUCTIONS</h2>
+    </section>
+
+    <section id="playWUD">
+        <h2 id="scoreboard"></h2>
+    </section>
+
+    <section id="gameOver">
+        <h1 class="title">GAME OVER!</h1>
+        <h2 id="finalScore"></h2>
+        <h3 id="restartButton">Restart?</h3>
+        <h3 id="goHomeButton">Home</h3>
+    </section>
+
+    <audio id="backgroundAudio" loop>
+        <source src="audio/backgroundSound.ogg#t=,0.8" type="audio/mp3">
+    </audio>
+    <audio id="homeMenuAudio" loop>
+        <source src="audio/2.ogg" type="audio/mp3">
+    </audio>
+    <audio id="gameoverAudio" loop>
+        <source src="audio/Game Over.ogg" type="audio/mp3">
+    </audio>
+    <audio id="reboundAudio">
+        <source src="audio/rebound.mp3" type="audio/mp3">
+    </audio>
+    <audio id="screenreboundAudio">
+        <source src="audio/screenrebound.ogg" type="audio/mp3">
+    </audio>
+
+    <canvas id="game-screen" width="900px" height="650px"
+        style="background-color:white; border: 1.5px solid red"></canvas>
+
+    <input type="checkbox" name="pause" id="pause">
+    <input type="checkbox" name="pause" id="pause1">
+    <script src="juego.js"></script>
+</body>
+
+</html>

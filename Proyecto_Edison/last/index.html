@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- OBTENIENDO BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Hotel , proyecto final de fundamentos</title>
+</head>
+<body class="">
+    <header class="border bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light  justify-content-between container ">
+            <h2>
+                <a href="" style="text-decoration: none; color: black;">  hotel CJE  </a>
+            </h2>
+            <p style="font-size: 20px;" class="mb-0" id='presupuesto'>  </p>
+            <div class="form-inline my-2 my-lg-0 flex-column">
+                <input class="form-control mr-sm-2" type="search"  id='buscarCliente' onchange="buscarClientes()" placeholder="pulsar enter para buscar" aria-label="Search">
+            </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container clientesResultados">
+        <table class="table table-hover border " id='bodyDeTablaResult'>
+        </table>
+        <h2 id='searchResult'> </h2>
+    </div>
+    <main class=" mt-4">
+        <div class="container d-flex flex-wrap">
+            <div class="formulario col-12 col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3> registro de clientes</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Nombre Completo</label>
+                            <input type="email" class="form-control" id='nombre' value='' name='nombre'
+                                placeholder="nombre completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Numero de cedula</label>
+                            <input type="number" class="form-control" id='cedula' name='nombre' placeholder="cedula">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Numero de telefono</label>
+                            <input type="number" class="form-control" id='telefono' name='telefono' placeholder="telefono">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect2">Dias que estara alojado</label>
+                            <select multiple class="form-control" name='alojamiento' id="alojamiento">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label >numero de habitacion</label>
+                            <select class="form-control" name="habitacion" id="habitacion">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-success" onclick="addClient()" id='botonDeCrear'>  crear cliente</button>
+                </div>
+            </div>
+            <div class="clientes col-12 col-md-8">
+                <table class="table table-hover border">
+                    <thead>
+                        <tr>
+                            <th scope="col">nombre</th>
+                            <th scope="col">cedula</th>
+                            <th scope="col">alojamientos</th>
+                            <th scope="col">habitacion</th>
+                            <th scope="col">precio</th>
+                            <th scope="col">configuracion</th>
+                        </tr>
+                    </thead>
+                    <tbody id='bodyDeTabla'>
+                         <!-- AQUI MUESTRO LOS CLIENTES  -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="integrantes.js"></script>
+    <script src="script.js"></script>
+</body> 
+
+</html>

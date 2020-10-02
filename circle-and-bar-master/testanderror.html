@@ -1,0 +1,91 @@
+
+<!doctype html>
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <meta name="viewport" content="width=device-width" />
+  
+  <meta name="description" content="Ejemplo de animaci&oacute;n en el canvas utilizando el m&eacute;todo setInterval." />
+  <meta name="keywords" content="ejemplo, canvas, HTML5,JavaScript, setInterval, addEventListener, girar,rotate"/>
+ 
+  <meta name="author" content="enxaneta.info" />
+  <meta property="og:title" content="Ejemplo de animaci&oacute;n en el canvas utilizando el m&eacute;todo setInterval." /> 
+  <meta property="og:type" content="website" /> 
+  <meta property="og:image" content="http://w3.unpocodetodo.info/images/w3_og.png" />  
+  <meta property="og:url" content="w3.unpocodetodo.info/canvas/ejemplos/animacion-con-setinterval.html" /> 
+  <meta property="og:site_name" content="w3.unpocodetodo.info" /> 
+  <meta property="og:description" content="Ejemplo de animaci&oacute;n en el canvas utilizando el m&eacute;todo setInterval." /> 
+  
+  <link rel="icon" type="image/png" href="http://w3.unpocodetodo.info/images/w3.png" />
+  <!--<link rel="icon" type="image/png" href="http://w3.unpocodetodo.info/img/favicon.png">-->
+  <!-- 57x57 older iPhone and Android devices -->
+  <!--<link rel="apple-touch-icon-precomposed" href="http://w3.unpocodetodo.infoimages/apple-touch-icon-precomposed.png">-->
+  <!-- iPad 1 and 2 & iPad mini -->
+  <link rel="apple-touch-icon" sizes="72x72" href="http://w3.unpocodetodo.info/images/apple-touch-icon-72x72.png">
+  <!-- iPhone 4, 4S, 5 and iPod Touch -->
+  <link rel="apple-touch-icon" sizes="114x114" href="http://w3.unpocodetodo.info/images/apple-touch-icon-114x114.png">
+  <!-- iPad 3rd gen -->
+  <link rel="apple-touch-icon" sizes="144x144" href="http://w3.unpocodetodo.info/images/apple-touch-icon-144x144.png"> 
+  
+
+<title>Animaci&oacute;n con setInterval</title>
+<style>
+#c{ background:white; border:1px solid #d9d9d9; display:block; margin:0 auto;}
+h4, p{ text-align:center;}
+</style>
+</head>
+
+<body>
+<h4>Ejemplo de animaci&oacute;n con setInterval()</h4>
+<p>Haz clic en el canvas para parar o reiniciar la animaci&oacute;n</p>
+<canvas id="c" width="500" height="300"></canvas>
+
+<script>
+
+var c = document.getElementById("c");
+var ctx = c.getContext("2d");
+var cw = c.width;
+var ch = c.height;
+
+var rad = Math.PI/180;
+
+var angulo = 5;
+var parado = true;
+var elId;
+
+ctx.strokeStyle = "#d16";
+ctx.fillStyle = "rgba(255,255,255,.1)";
+
+
+ctx.translate(cw/2,ch/2);
+
+ctx.strokeRect(-75,-75,150,150);
+
+function girar(){
+	ctx.strokeRect(-75,-75,150,150)
+	ctx.rotate(rad * angulo);
+	ctx.fillRect(-cw/2,-ch/2, cw,ch);
+}
+
+
+
+function start() {
+     elId = window.setInterval(function(){girar()},1000/60);
+     parado = false;
+}
+function stopAnimacion() {
+     if (elId) {
+     window.clearInterval(elId);
+     }
+     parado = true;
+     }
+
+
+window.addEventListener("load",start,false);
+c.addEventListener("click", function(){(parado == true) ? start() : stopAnimacion();} ,false)
+
+</script>
+</body>
+</html>

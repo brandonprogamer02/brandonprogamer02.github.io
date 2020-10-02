@@ -1,0 +1,72 @@
+body{
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+   
+    background: url(dofus-image.jpg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#boton{
+    
+    display: block;
+    background-color: white;
+    border: 2px solid cornflowerblue;
+    outline: none;
+    border-radius: 20px;
+    color: cornflowerblue;
+    padding: 4px 25px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 50%;
+    
+}
+#boton:hover{
+    background:cornflowerblue;
+    color: white;
+    
+    border-radius: 20px;
+    
+
+}/*
+#el-real{
+    
+    
+    background-size: 100% 100%;
+    border: 0.01px solid white;
+}*/
+main{
+
+    background:white;
+    margin:auto;
+    width: 600px;
+    margin-top:10%;
+    border-radius: 20px;
+    margin-bottom: 100px;
+    
+    border: 05px solid cadetblue;
+}
+main *{
+    margin:auto;
+    padding:6px;
+}
+table *{
+    height: 6px;
+    outline:none;
+    
+}
+h1{
+    text-align: center;
+    color: cornflowerblue;
+    
+}
+
+
+#resultadoTexto{
+    margin-top: -13px;
+    margin-left: 50px;
+    
+}
+
+
