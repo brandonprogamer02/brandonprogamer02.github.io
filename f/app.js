@@ -1,8 +1,10 @@
-
+//#### encontrar un algoritmo para detectar si una database existe
 //---EVENTOS LISTENERS-------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-    let f = new IndexedDB();
-
+    IndexedDB.createDB('database');
+    //IndexedDB.createTable('database2', 'tabla 2');
+    //IndexedDB.deleteDB('database1');
+    //IndexedDB.databaseExists('database2');
 
 });
 
@@ -10,38 +12,78 @@ document.addEventListener('DOMContentLoaded', () => {
 class IndexedDB {
 
     // --REAL FUNCTIONS-----------------------------------------------------------------------
-    constructor(db) {
-        // this it execute first
-        let request = indexedDB.open(db, 1);
-        request.onupgradeneeded = () => {
-            let DB = request.result;
-            DB.createObjectStore('db', { autoIncrement: true });
-            console.log('Almacen creado', DB);
+    static createDB = (nameDB) => {
+        // validaciones
+        if (nameDB == undefined || nameDB.trim() == '') {
+            console.error('DEBES DE PONERLE UN NOMBRE VALIDO A LA DATABASE');
+            return;
         }
+        IndexedDB.databaseExists(nameDB, (exists) => {
+            if (exists) {
+                console.error('YA EXISTE UN DATABASE LLAMADA ASI');
+                return;
+            }
+        });
+        console.log('llego aqui');
+        // this it execute first
+        let request = indexedDB.open(nameDB, 1);
+        console.log('DATABASE CREADA SATISFACTORIAMENTE')
         // if a error
         request.onerror = (error) => console.error('Was a error', error);
 
     }
-    deleteTable = (db,table) => {
-        let request = indexedDB.open(db, 1);
+    static databaseExists = (nameDB, callback) => {
+        var dbExists = true;
+        var request = window.indexedDB.open(nameDB);
+        request.onupgradeneeded = function (e) {
+            if (request.result.version === 1) {
+                dbExists = false;
+                window.indexedDB.deleteDatabase(nameDB);
+                if (callback)
+                    callback(dbExists);
+            }
+        };
+        request.onsuccess = function (e) {
+            if (dbExists) {
+                if (callback)
+                    callback(dbExists);
+            }
+        };
+    }
+
+    static deleteDB = (nameDB) => {
+        let DBDeleteRequest = indexedDB.deleteDatabase(nameDB);
+
+        DBDeleteRequest.onerror = function (event) {
+            console.error("I can't eliminate the database");
+        };
+
+        DBDeleteRequest.onsuccess = function (event) {
+            console.log("Database deleted successfully");
+
+        }
+    }
+    static deleteTable = (nameDB, nameTable) => {
+        let request = indexedDB.open(nameDB, 1);
         request.onupgradeneeded = () => {
             let DB = request.result;
-            DB.deleteObjectStore(table);
-            console.log(`THE TABLE ${table} OF THE DB ${db} WAS DELETED`);
+            DB.deleteObjectStore(nameTable);
+            console.log(`THE TABLE ${nameTable} OF THE DB ${nameDB} WAS DELETED`);
         }
 
     }
-    createTable = (db,table) => {
-        let request = indexedDB.open(db, 1);
+    static createTable = (nameDB = createDB(), nameTable) => {
+        // if la database no existe se crea automaticamente
+        let request = indexedDB.open(nameDB, 1);
         request.onupgradeneeded = () => {
             let DB = request.result;
-            DB.createObjectStore(table, { autoIncrement: true });
-            console.log(`THE TABLE ${table} WAS CREATED IN DB ${db}`);
+            DB.createObjectStore(nameTable, { autoIncrement: true });
+            console.log(`THE TABLE ${nameTable} WAS CREATED IN DB ${nameTable}`);
         }
     }
 
-    deleteData = (db, table, key) => {
-        FimplementationCodeIndexedDB(db, table, (objectStorage) => {
+    static deleteTableData = (nameDB, nameTable, key) => {
+        FimplementationCodeIndexedDB(nameDB, nameTable, (objectStorage) => {
             const requestCursor = objectStorage.openCursor();
             requestCursor.onsuccess = (e) => {
                 const cursor = requestCursor.result;
@@ -56,11 +98,8 @@ class IndexedDB {
             }
         });
     }
-
-
-
-    updateData = (db, table, key, value) => {
-        implementationCodeIndexedDB(db, table, 'readwrite', (objectStorage) => {
+    static updateTableData = (nameDB, nameTable, key, value) => {
+        implementationCodeIndexedDB(nameDB, nameTable, 'readwrite', (objectStorage) => {
             const requestCursor = objectStorage.openCursor();
             requestCursor.onsuccess = (e) => {
                 const cursor = requestCursor.result;
@@ -76,14 +115,14 @@ class IndexedDB {
         });
     }
 
-    addDataTable = (db, table, objeto) => {
-        implementationCodeIndexedDB(db, table, 'readwrite', (objectStorage) => {
+    static addTableData = (nameDB, nameTable, objeto) => {
+        implementationCodeIndexedDB(nameDB, nameTable, 'readwrite', (objectStorage) => {
             objectStorage.add(objeto);
         });
     }
 
-    readDataTable = (db, table, callback) => {
-        implementationCodeIndexedDB(db, table, 'readonly', (objectStorage) => {
+    static readTableData = (nameDB, nameTable, callback) => {
+        implementationCodeIndexedDB(nameDB, nameTable, 'readonly', (objectStorage) => {
             const requestCursor = objectStorage.openCursor();
             const arrayData = new Array();
             requestCursor.onsuccess = (e) => {
@@ -97,13 +136,13 @@ class IndexedDB {
         });
 
     }
-    #implementationCodeIndexedDB = (db, table, tipoTransaccion, callback) => {
+    #implementationCodeIndexedDB = (nameTable, nameDB, tipoTransaccion, callback) => {
         let request = indexedDB.open(db, 1);
 
         request.onsuccess = () => {
             let DB = request.result;
-            const transaccion = DB.transaction([db], tipoTransaccion);
-            const objectStorage = transaccion.objectStore(table);
+            const transaccion = DB.transaction([nameDB], tipoTransaccion);
+            const objectStorage = transaccion.objectStore(nameTable);
             callback(objectStorage);
         }
     }
