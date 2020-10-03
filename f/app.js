@@ -1,10 +1,15 @@
 //#### encontrar un algoritmo para detectar si una database existe
 //---EVENTOS LISTENERS-------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-    IndexedDB.createDB('database');
+    //IndexedDB.createDB('databasetres');
     //IndexedDB.createTable('database2', 'tabla 2');
     //IndexedDB.deleteDB('database1');
     //IndexedDB.databaseExists('database2');
+
+    IndexedDB.DBExists('databaseee', (value) => {
+        console.log(`la database existe? ${value}`);
+    });
+    console.log('y aqui?')
 
 });
 
@@ -32,35 +37,30 @@ class IndexedDB {
         request.onerror = (error) => console.error('Was a error', error);
 
     }
-    static databaseExists = (nameDB, callback) => {
-        var dbExists = true;
-        var request = window.indexedDB.open(nameDB);
-        request.onupgradeneeded = function (e) {
-            if (request.result.version === 1) {
-                dbExists = false;
-                window.indexedDB.deleteDatabase(nameDB);
-                if (callback)
-                    callback(dbExists);
-            }
-        };
-        request.onsuccess = function (e) {
-            if (dbExists) {
-                if (callback)
-                    callback(dbExists);
-            }
-        };
+    static DBExists = async (nameDB, callback) => {
+        let x = true;
+        const request = await indexedDB.open(nameDB);
+        request.onupgradeneeded = () => {
+            let pp = window.indexedDB.deleteDatabase(nameDB);
+            console.log('entro en false');
+
+            x = false;
+        }
+        callback(x);
+
     }
 
-    static deleteDB = (nameDB) => {
+    static deleteDB = (nameDB, callback) => {
         let DBDeleteRequest = indexedDB.deleteDatabase(nameDB);
 
         DBDeleteRequest.onerror = function (event) {
             console.error("I can't eliminate the database");
+            callback(false);
         };
 
         DBDeleteRequest.onsuccess = function (event) {
             console.log("Database deleted successfully");
-
+            callback(true);
         }
     }
     static deleteTable = (nameDB, nameTable) => {
