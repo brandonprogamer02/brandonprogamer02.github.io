@@ -1,6 +1,4 @@
-// ### validar en todos los metodos que la database exista
-
-
+ya no hay nada
 //---EVENTOS LISTENERS-------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
 
