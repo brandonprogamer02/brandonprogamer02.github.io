@@ -3,44 +3,37 @@
 
 //---EVENTOS LISTENERS-------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-    // IndexedDB.createDB('3database2');
-    //IndexedDB.createTable('database2', 'tabla 2');
-    //IndexedDB.deleteDB('database1');
-    //IndexedDB.databaseExists('database2');
 
-    // IndexedDB.DBExists("database2")
-    //     .then((res) => {
-    //         console.log(res);
-    //     });
-
-    // IndexedDB.deleteDB('3database22s'); 
-    IndexedDB.addTableData('database','ninguna',{nombre:'brandon'});  
+    //IndexedDB.addTableData('database', 'ninguna', { nombre: 'brandon' });
+    //IndexedDB.createDB('ninguna');
+    //IndexedDB.deleteDB('F');
+    //IndexedDB.deleteTable('ninguna', 'ninguna');
+    IndexedDB.createTable('database222', 'tabla1');
+    // IndexedDB.deleteTable(`ninguna`,'ninguna');
 
 });
-
 
 class IndexedDB {
 
     // --REAL FUNCTIONS-----------------------------------------------------------------------
-    static createDB = (nameDB) => {
+    static createDB = async (nameDB) => {
         // validaciones
         if (nameDB == undefined || nameDB.trim() == '') {
             console.error('DEBES DE PONERLE UN NOMBRE VALIDO A LA DATABASE');
             return;
         }
-
-        IndexedDB.DBExists(nameDB).then(() => {
-            // aqui entra cuando esta true
-            console.error('YA EXISTE UN DATABASE LLAMADA ASI');
-        }, () => {
+        // verificamos que sea unico el nombre de la database que se esta introduciendo
+        try {
+            const result = await IndexedDB.DBExists(nameDB);
+            console.error(`La database ${nameBD} ya existe`);
+        } catch (e) {
+            console.log('todo bien');
             // aqui entra cuenta esta false
-            // this it execute first
-            let request = indexedDB.open(nameDB, 1);
+            const request = indexedDB.open(nameDB, 1);
             console.log('DATABASE CREADA SATISFACTORIAMENTE')
-            // if a error
             request.onerror = (error) => console.error('Was a error', error);
+        }
 
-        });
     }
 
     static DBExists = (name) => {
@@ -49,7 +42,7 @@ class IndexedDB {
                 req;
 
             try {
-                // See if it exist 
+                // aqui vemos si existe
                 req = db.webkitGetDatabaseNames();
                 req.onsuccess = function (evt) {
                     ~([].slice.call(evt.target.result)).indexOf(name) ?
@@ -72,46 +65,82 @@ class IndexedDB {
         })
     }
 
-    static deleteDB = (nameDB) => {
-        IndexedDB.DBExists(nameDB)
-            .then(() => {
-                let DBDeleteRequest = indexedDB.deleteDatabase(nameDB);
+    static deleteDB = async (nameDB) => {
 
-                DBDeleteRequest.onerror = function (event) {
-                    console.error("I can't eliminate the database");
-                    callback(false);
-                };
+        // validaciones
+        if (nameDB == undefined || nameDB.trim() == '') {
+            console.error('DEBES PONER UNA DATABASE CON UN NOMBRE VALIDO!');
+            return;
+        }
 
-                DBDeleteRequest.onsuccess = function (event) {
-                    console.log("Database deleted successfully");
-                    callback(true);
-                }
+        try {
+            const res = await IndexedDB.DBExists(nameDB);
+            let DBDeleteRequest = indexedDB.deleteDatabase(nameDB);
+            DBDeleteRequest.onerror = function (event) {
+                console.error("I can't eliminate the database");
+            };
+            DBDeleteRequest.onsuccess = function (event) {
+                console.log("Database deleted successfully");
+            }
+        } catch (e) {
 
-            }, () => {
-                console.error(`La database ${nameDB} no existe! `);
-            });
+            console.error(`La database ${nameDB} no existe! `);
+        }
     }
-    static deleteTable = (nameDB, nameTable) => {
+
+    static deleteTable = async (nameDB, nameTable) => {
+        // validamos que que introduzca el nombre de la db correctamente
+        if (nameDB == undefined || nameDB.trim() == '') {
+            console.error('DEBES PONER UNA DATABASE CON UN NOMBRE VALIDO!');
+            return;
+        }
+
+        // validamos que la database exista
+        try {
+            let res = await IndexedDB.DBExists(nameDB);
+        } catch (e) {
+            console.error('ESTA DATABASE NO EXISTE!');
+            return;
+        }
+        // validamos que el nombre de la tabla sea valido
+        if (nameTable.trim() == '' || nameTable == undefined) {
+            console.error('DEBES INTRODUCIR UN NOMBRE PARA LA TABLA VALIDO');
+            return;
+        }
         let request = indexedDB.open(nameDB, 1);
-        request.onupgradeneeded = () => {
+        // validamos el nombre de la tabla
+        request.onsuccess = () => {
             let DB = request.result;
-            DB.deleteObjectStore(nameTable);
-            console.log(`THE TABLE ${nameTable} OF THE DB ${nameDB} WAS DELETED`);
+            try {
+                DB.deleteObjectStore(nameTable);
+                // si llego aqui es por que paso todas las validaciones 
+
+                console.log(`THE TABLE ${nameTable} OF THE DB ${nameDB} WAS DELETED`);
+                console.log('mera');
+
+            }
+            catch (e) {
+                console.error(` ${nameTable} NO EXISTE EN LA DATABASE ${nameDB}`)
+            }
         }
 
     }
-    static createTable = (nameDB = createDB(), nameTable) => {
+
+
+
+    static createTable = (nameDB, nameTable) => {
         // if la database no existe se crea automaticamente
-        let request = indexedDB.open(nameDB, 1);
-        request.onupgradeneeded = () => {
-            let DB = request.result;
-            DB.createObjectStore(nameTable, { autoIncrement: true });
-            console.log(`THE TABLE ${nameTable} WAS CREATED IN DB ${nameTable}`);
+        const request = indexedDB.open(nameDB,1);
+        request.onsuccess = (e) => {
+            const result = e.target.result;
+            result.createObjectStore('s1', {autoIncrement: true});
         }
+
+
     }
 
     static deleteTableData = (nameDB, nameTable, key) => {
-        FimplementationCodeIndexedDB(nameDB, nameTable, (objectStorage) => {
+        implementationCodeIndexedDB(nameDB, nameTable, (objectStorage) => {
             const requestCursor = objectStorage.openCursor();
             requestCursor.onsuccess = (e) => {
                 const cursor = requestCursor.result;
@@ -146,16 +175,16 @@ class IndexedDB {
     static addTableData = (nameDB, nameTable, objeto) => {
 
         IndexedDB.DBExists(nameDB)
-        .then((res)=>{
-            if(res){
-                IndexedDB.#implementationCodeIndexedDB(nameDB, nameTable, 'readwrite', (objectStorage) => {
-                    objectStorage.add(objeto);
-                });
+            .then((res) => {
+                if (res) {
+                    IndexedDB.#implementationCodeIndexedDB(nameDB, nameTable, 'readwrite', (objectStorage) => {
+                        objectStorage.add(objeto);
+                    });
 
-            }else { console.error(`No existe la database ${nameDb}!`);}
-        })
+                } else { console.error(`No existe la database ${nameDb}!`); }
+            })
 
-        
+
     }
 
     static readTableData = (nameDB, nameTable, callback) => {
@@ -177,13 +206,14 @@ class IndexedDB {
         let request = indexedDB.open(nameDB, 1);
 
         request.onsuccess = () => {
-
+            try{
             let DB = request.result;
-            try{ const transaccion = DB.transaction([nameDB], tipoTransaccion); }
-            catch(e){ console.error(`La tabla ${nameTable} no existe!`) }
-            
+            const transaccion = DB.transaction([nameDB], tipoTransaccion);
             const objectStorage = transaccion.objectStore(nameTable);
             callback(objectStorage);
+            }catch(e){ }
+
+
         }
     }
 
