@@ -1,0 +1,18 @@
+MANEJO DE TYPESCRIPT 
+instalaciones:
+1. instalar node js en nuestra maquina
+2. probamos que se instalo el nodejs correctamente con: node -v
+3. instalar npm. Ponemos en este comando en consola: npm install npm@latest -g
+4. probamos que se instalo el npm correctamente con: npm -v
+5. instalar el typescript
+6. probamos que se instalo correctamente el typescript con: tsc -v
+
+YA TA TO CLEAN. SI TE DA ERROR EN VSCODE AL TRATAR DE COMPILAR PERO PUEDES COMPILAR CON LA CONSOLA DE WINDOWS
+ENTONCES EJECUTAR 
+'ESTE COMANDO: Set-ExecutionPolicy Unrestricted'
+
+Y LISTO YA PODEMOS COMPILAR DE TS A JS CON: tsc miarchivots.ts
+
+Para compilar automaticamente al guardar los cambios en vscode lo que hacemos es tirar el comando: 
+'tsc -init' para crear el archivo tsconfig.json y luego tiramos: 'ctrl + shift + b' y elegimos
+'tsc: watch - tsconfig.json'	
