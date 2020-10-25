@@ -1,12 +1,18 @@
 "use strict";
-var Human = /** @class */ (function () {
-    function Human(nombre) {
-        this.nombre = nombre;
+var flash = {
+    nombre: 'Barry Allen',
+    poderes: ['Viajar en el tiempo', 'Correr rapido'],
+    getNombre: function () {
+        return '';
     }
-    Human.prototype.getNombre = function () { return this.nombre; };
-    return Human;
-}());
-var arrowFunction = function (humano) {
-    console.log('el nombre del humano es ' + humano.getNombre());
 };
-arrowFunction(new Human('jorge'));
+var vari = function () { };
+console.log(typeof vari);
+var f = function () {
+    var data = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        data[_i] = arguments[_i];
+    }
+    return data.join('');
+};
+console.log(f('hola', 'amigos', 'como', 'estan?'));

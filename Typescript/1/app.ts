@@ -1,17 +1,21 @@
-class Human{
-    private nombre:string;
-    constructor(nombre:string)
-    {
-        this.nombre = nombre;
-        
+type heroe = {
+    nombre:string,
+    poderes: string[]
+    getNombre:() => string
+}
+
+const flash: heroe = {
+    nombre:'Barry Allen',
+    poderes:['Viajar en el tiempo','Correr rapido'],
+    getNombre: () => {
+        return '';
     }
-    
-    
-    public getNombre():string { return this.nombre }
- 
 }
-const arrowFunction = (humano:Human) =>{
-    console.log('el nombre del humano es ' + humano.getNombre())
+let vari:any = ():any =>{};
+
+console.log(typeof vari)
+const f = (...data:string[] ): string | number=>{
+    return data.join('');
 }
- 
-arrowFunction(new Human('jorge'))
+
+console.log(f('hola','amigos','como','estan?'));
