@@ -4,9 +4,12 @@ var Human = /** @class */ (function () {
         this.nombre = nombre;
     }
     Human.prototype.getNombre = function () { return this.nombre; };
+    ;
+    Human.prototype.setNombre = function (nombre) { this.nombre = nombre; };
     return Human;
 }());
-var arrowFunction = function (humano) {
-    console.log('el nombre del humano es ' + humano.getNombre());
+var funcion = function (humano) {
+    console.log("El nombre es " + humano.getNombre());
 };
-arrowFunction(new Human('jorge'));
+new Human('El Pepe').getNombre();
+//# sourceMappingURL=app.js.map

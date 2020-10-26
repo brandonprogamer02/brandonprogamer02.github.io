@@ -1,17 +1,14 @@
-class Human{
+class Human {
     private nombre:string;
-    constructor(nombre:string)
-    {
-        this.nombre = nombre;
-        
+    constructor(nombre:string){
+        this.nombre = nombre
     }
+    getNombre():string{return this.nombre};
+    setNombre(nombre:string):void {this.nombre = nombre}
     
-    
-    public getNombre():string { return this.nombre }
- 
 }
-const arrowFunction = (humano:Human) =>{
-    console.log('el nombre del humano es ' + humano.getNombre())
+const funcion = (humano:Human):void =>{
+    console.log(`El nombre es ${humano.getNombre()}`);
 }
- 
-arrowFunction(new Human('jorge'))
+
+new Human('El Pepe').getNombre()

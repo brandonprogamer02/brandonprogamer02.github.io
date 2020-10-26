@@ -9,10 +9,14 @@ instalaciones:
 
 YA TA TO CLEAN. SI TE DA ERROR EN VSCODE AL TRATAR DE COMPILAR PERO PUEDES COMPILAR CON LA CONSOLA DE WINDOWS
 ENTONCES EJECUTAR 
+
 'ESTE COMANDO: Set-ExecutionPolicy Unrestricted'
+OJO AHI QUE EJECUTAR EL POWESHELL EN ADMINISTRADOR
 
 Y LISTO YA PODEMOS COMPILAR DE TS A JS CON: tsc miarchivots.ts
 
 Para compilar automaticamente al guardar los cambios en vscode lo que hacemos es tirar el comando: 
 'tsc -init' para crear el archivo tsconfig.json y luego tiramos: 'ctrl + shift + b' y elegimos
 'tsc: watch - tsconfig.json'	
+
+para activar la depuracion ahi que poner "sourcemap":true en el tsconfig.json
