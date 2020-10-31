@@ -20,3 +20,31 @@ Para compilar automaticamente al guardar los cambios en vscode lo que hacemos es
 'tsc: watch - tsconfig.json'	
 
 para activar la depuracion ahi que poner "sourcemap":true en el tsconfig.json
+
+LUEGO DE TODO ESTO AHI QUE preparar el proyecto para importar modulos
+- ponemos 'npm init' para crear el package.json de node
+
+instalamos el lite-server(se puede usar cualquier servidor virtual)
+1. ponemos en 'npm init' para crear el package.json de node
+ahora ahi que montar el lite server:
+2. ponemos 'npm install lite-server'(con consola administrador), esto instalara los node_modules para que el lite-server funcione
+3. luego en el package.json ponemos en script: '"dev": "lite-server"'
+4. para ejecutar el lite-server: npm run dev
+
+AHORA INSTALAMOS EL SYSTEMJS EN NUESTRO PROYECTO
+1. ponemos 'npm install systemjs@0.19.41', esta es la version estable con typescript
+2. importamos systemjs al index.html de nuestro proyecto:
+'<script src="node_modules/systemjs/dist/system.js"></script>' 
+3. luego ponemos un script importando el main.js de nuestro proyecto:
+<script>
+         SystemJS.config({
+         baseURL:"./build",
+        defaultJSExtensions:true
+         })
+     SystemJS.import('app.js')
+      </script>
+4.yaa!
+
+
+
+
