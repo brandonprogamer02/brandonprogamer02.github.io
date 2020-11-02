@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Validacion de Formulario Envio Email</title>
+  <link rel="stylesheet" href="style.css">
+  
+  
+
+</head>
+
+<body>
+  <div class="contenedor-padre">
+    <header>
+      <h1>Formulario Envio <br />de Email</h1>
+    </header>
+    <main>
+      <!--
+        <div id='mensaje-error'>
+          <span> Mensaje de error de algun tipo</span>
+        </div>
+      -->
+      <form action="" class=''>
+        <h3>Para</h3>
+        <textarea name="" cols="30" rows="1" id="para"></textarea>
+        <h3>Asunto</h3>
+        <textarea name="" cols="30" rows="2" id="asunto"></textarea>
+        <h3>Mensaje</h3>
+        <textarea name="" cols="30" rows="5" id="mensaje"></textarea>
+        <br />
+        <div id="botonera">
+          <input type="button" id="enviar" value="Enviar">
+          <input type="button" id="limpiar" value="Limpiar">
+        </div>
+        <br />
+
+
+      </form>
+    </main>
+  </div>
+  <script src="node_modules/systemjs/dist/system.js"></script>
+  <script>
+    SystemJS.config({
+      baseURL: "./build",
+      defaultJSExtensions: true
+    })
+    SystemJS.import('main.js')
+  </script>
+</body>
+
+</html>

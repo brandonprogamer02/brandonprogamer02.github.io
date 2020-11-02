@@ -44,6 +44,7 @@ AHORA INSTALAMOS EL SYSTEMJS EN NUESTRO PROYECTO
      SystemJS.import('app.js')
       </script>
 4.yaa!
+5.NOTA: es importante que nuestra fichero principal sea uno llamado 'main.ts', esto es en caso de que usemos el outFile para generar fichero unico
 
 
 
