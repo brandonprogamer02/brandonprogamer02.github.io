@@ -1,31 +1,13 @@
 "use strict";
-// BLOQUE DE FECHAS
-System.register("validaciones/fechas", [], function (exports_1, context_1) {
-    "use strict";
-    var PI;
-    var __moduleName = context_1 && context_1.id;
-    return {
-        setters: [],
-        execute: function () {
-            exports_1("PI", PI = 3.15);
-        }
-    };
-});
-// BLOQUE DE MAIN
-System.register("main", ["validaciones/fechas"], function (exports_2, context_2) {
-    "use strict";
-    var fechas_1;
-    var __moduleName = context_2 && context_2.id;
-    return {
-        setters: [
-            function (fechas_1_1) {
-                fechas_1 = fechas_1_1;
-            }
-        ],
-        execute: function () {
-            console.log(fechas_1.PI);
-        }
-    };
+var notificar = document.querySelector('#notificar');
+// Event Listeners
+notificar.addEventListener('click', function () {
+    Notification
+        .requestPermission()
+        .then(function (resultado) {
+        console.log("El resultado es " + resultado);
+    });
+    var requestNotification = document;
 });
 // function consola(constructor: Function) {
 //     console.log(constructor)
@@ -57,12 +39,39 @@ System.register("main", ["validaciones/fechas"], function (exports_2, context_2)
 //         this._denominador = denominador
 //     }
 // }
-// export const validarTexto = (texto:string):boolean =>{
-//     if(texto.length > 3) return true;
-//     else return false;
-// }
-// export const validarTexto2 = (texto:string):boolean =>{
-//     if(texto.length > 3) return true;
-//     else return false;
-// }
+// BLOQUE DE FECHAS
+System.register("validaciones/fechas", [], function (exports_1, context_1) {
+    "use strict";
+    var PI, validarTexto;
+    var __moduleName = context_1 && context_1.id;
+    return {
+        setters: [],
+        execute: function () {
+            exports_1("PI", PI = 3.15);
+            exports_1("validarTexto", validarTexto = 23);
+        }
+    };
+});
+System.register("validaciones/textos", [], function (exports_2, context_2) {
+    "use strict";
+    var validarTexto, validarTexto2;
+    var __moduleName = context_2 && context_2.id;
+    return {
+        setters: [],
+        execute: function () {
+            exports_2("validarTexto", validarTexto = function (texto) {
+                if (texto.length > 3)
+                    return true;
+                else
+                    return false;
+            });
+            exports_2("validarTexto2", validarTexto2 = function (texto) {
+                if (texto.length > 3)
+                    return true;
+                else
+                    return false;
+            });
+        }
+    };
+});
 //# sourceMappingURL=main.js.map
